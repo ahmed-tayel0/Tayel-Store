@@ -18,6 +18,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 import {
   User,
   Package,
@@ -757,6 +758,7 @@ export default function ProfilePage() {
                       onEdit={() => handleEditAddress(address)}
                       onDelete={() => handleDeleteAddress(address._id)}
                       onSetDefault={() => handleSetDefault(address._id)}
+                      locale={locale}
                     />
                   ))}
                 </>
@@ -909,6 +911,7 @@ function OrderCard({ order, locale, onClick }: { order: Order; locale: string; o
   const tOrders = useTranslations('orders');
   const tCommon = useTranslations('common');
   const tCheckout = useTranslations('checkout');
+  const isRTL = locale === 'ar';
 
   return (
     <div
@@ -955,8 +958,9 @@ function AddressPreview({ address, onEdit }: { address: Address; onEdit: () => v
   );
 }
 
-function AddressCard({ address, isDefault, onEdit, onDelete, onSetDefault }: { address: Address; isDefault: boolean; onEdit: () => void; onDelete: () => void; onSetDefault: () => void }) {
+function AddressCard({ address, isDefault, onEdit, onDelete, onSetDefault, locale }: { address: Address; isDefault: boolean; onEdit: () => void; onDelete: () => void; onSetDefault: () => void; locale: string }) {
   const t = useTranslations('profile');
+  const isRTL = locale === 'ar';
 
   return (
     <Card className="glass">

@@ -365,6 +365,7 @@ export default function CartPage() {
               t={t}
               tCommon={tCommon}
               isLoading={isLoading}
+              isRTL={isRTL}
             />
           </motion.div>
         </div>
@@ -555,6 +556,7 @@ interface OrderSummaryProps {
   t: ReturnType<typeof useTranslations>;
   tCommon: ReturnType<typeof useTranslations>;
   isLoading: boolean;
+  isRTL: boolean;
 }
 
 function OrderSummary({
@@ -568,6 +570,7 @@ function OrderSummary({
   t,
   tCommon,
   isLoading,
+  isRTL,
 }: OrderSummaryProps) {
   const isFreeShipping = shipping === 0;
 

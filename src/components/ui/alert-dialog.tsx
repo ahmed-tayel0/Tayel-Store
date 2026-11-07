@@ -78,7 +78,7 @@ export function AlertDialogTrigger({
 
   return (
     <>
-      {React.cloneElement(children, {
+      {React.cloneElement(children as React.ReactElement<{ onClick?: () => void }>, {
         onClick: () => setOpen(true),
       })}
       <AlertDialog

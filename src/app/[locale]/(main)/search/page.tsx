@@ -37,9 +37,9 @@ export default function SearchPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [metadata, setMetadata] = useState<{
-    currentPage: number;
-    numberOfPages: number;
-    limit: number;
+    currentPage?: number;
+    numberOfPages?: number;
+    limit?: number;
     results?: number;
   } | null>(null);
   const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
@@ -456,7 +456,7 @@ export default function SearchPage() {
                   </AnimatePresence>
 
                   {/* Pagination */}
-                  {metadata && metadata.numberOfPages > 1 && (
+                  {metadata && (metadata.numberOfPages ?? 1) > 1 && (
                     <motion.nav
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -473,11 +473,11 @@ export default function SearchPage() {
                       >
                         <ChevronLeft className={cn('size-4', isRTL && 'rotate-180')} />
                       </Button>
-                      {Array.from({ length: metadata.numberOfPages }, (_, i) => i + 1)
+                      {Array.from({ length: metadata.numberOfPages || 1 }, (_, i) => i + 1)
                         .filter(
                           (page) =>
                             page === 1 ||
-                            page === metadata.numberOfPages ||
+                            page === (metadata.numberOfPages || 1) ||
                             (page >= (metadata.currentPage || 1) - 1 && page <= (metadata.currentPage || 1) + 1)
                         )
                         .map((page, index, arr) => (
@@ -499,7 +499,7 @@ export default function SearchPage() {
                         variant="outline"
                         size="icon"
                         onClick={() => handlePageChange((metadata.currentPage || 1) + 1)}
-                        disabled={(metadata.currentPage || 1) >= metadata.numberOfPages}
+                        disabled={(metadata.currentPage || 1) >= (metadata.numberOfPages || 1)}
                         aria-label={t('next')}
                       >
                         <ChevronRight className={cn('size-4', isRTL && 'rotate-180')} />

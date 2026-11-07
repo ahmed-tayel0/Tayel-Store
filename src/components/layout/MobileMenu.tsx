@@ -10,6 +10,7 @@ import { LogoutDialog } from '@/components/shared/LogoutDialog';
 import { useCartStore } from '@/store/useCartStore';
 import { useWishlistStore } from '@/store/useWishlistStore';
 import { useAuth } from '@/hooks/useAuth';
+import { cn } from '@/lib/utils';
 import {
   X,
   Menu,

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Trash2, ShoppingCart, Heart } from 'lucide-react';
 import { toast } from 'sonner';
 import { InteractiveGrid } from '@/components/ui/aceternity/InteractiveGrid';
+import { cn } from '@/lib/utils';
 
 export default function WishlistPage() {
   const t = useTranslations('common');
@@ -79,7 +80,7 @@ export default function WishlistPage() {
             </div>
             <h2 className="text-2xl font-bold mb-2">{t('wishlist')}</h2>
             <p className="text-foreground-muted mb-8 max-w-md mx-auto">
-              {tCart.emptyDesc || 'Your wishlist is empty. Start adding products you love!'}
+              {'Your wishlist is empty. Start adding products you love!'}
             </p>
             <Button
               size="lg"

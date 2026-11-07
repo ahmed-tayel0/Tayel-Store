@@ -2,7 +2,11 @@
 import React, { useEffect } from "react";
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
 
-export const InteractiveGrid = () => {
+interface InteractiveGridProps {
+  className?: string;
+}
+
+export const InteractiveGrid = ({ className }: InteractiveGridProps) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -20,7 +24,7 @@ export const InteractiveGrid = () => {
 
   return (
     <div
-      className="fixed inset-0 z-0 pointer-events-none"
+      className={className}
       dir="ltr"
       style={{ direction: "ltr" }}
     >

@@ -13,9 +13,11 @@ const Select = React.forwardRef<HTMLSelectElement, React.SelectHTMLAttributes<HT
     // Extract options from children (SelectContent > SelectItem)
     const options: React.ReactNode[] = [];
     React.Children.forEach(children, (child) => {
-      if (React.isValidElement(child)) {
+      if (React.isValidElement<{ children: React.ReactNode }>(child)) {
         if (child.type === SelectContent) {
-          React.Children.forEach(child.props.children, (item) => {
+          const contentChildren = child.props.children;
+          const childrenArray = Array.isArray(contentChildren) ? contentChildren : [contentChildren];
+          childrenArray.forEach((item) => {
             if (React.isValidElement(item) && item.type === SelectItem) {
               options.push(item);
             }

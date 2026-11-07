@@ -1,6 +1,9 @@
 import { axiosInstance } from '@/lib/axios';
 import { ApiResponse, Category, Brand, Product, Cart, CartItem, Wishlist, CartResponse, AddToCartResponse, UpdateCartQuantityResponse, RemoveFromCartResponse, WishlistResponse, AddToWishlistResponse } from '@/types/api';
 
+// Re-export types for consumers
+export type { Product, Category, Brand };
+
 // Use Next.js API routes as proxy for cart/wishlist to handle auth correctly
 // The external API's cart/wishlist endpoints don't accept Bearer tokens directly
 const CART_API_BASE = '/api/cart';
